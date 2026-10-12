@@ -1,0 +1,113 @@
+/* components.css — buttons, cards, forms, dialog. Identical in the Frontend and Full-Stack Kits. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  font: inherit;
+  font-weight: 600;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  background: var(--accent);
+  color: #1a1918;
+  cursor: pointer;
+
+  &:hover { filter: brightness(0.95); }
+  &:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text);
+  border-color: var(--border);
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+
+  & h3 { margin: 0 0 0.25rem; }
+  & p { margin: 0 0 0.75rem; }
+}
+
+label {
+  display: grid;
+  gap: 0.25rem;
+  font-weight: 600;
+}
+
+input {
+  font: inherit;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--card);
+  color: var(--text);
+}
+
+
+dialog {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card);
+  color: var(--text);
+  max-width: 400px;
+
+  &::backdrop { background: rgb(0 0 0 / 0.4); }
+}
+
+.field-error {
+  margin: -0.4rem 0 0;
+  color: #c0392b;
+  font-size: 0.9rem;
+}
+
+input[aria-invalid="true"] { border-color: #c0392b; }
+
+.card h3 a { text-decoration-thickness: 1px; text-underline-offset: 3px; }
+
+.break { overflow-wrap: anywhere; font-family: var(--font-mono); font-size: 0.85rem; }
+
+/* Shown until JavaScript replaces it. If it stays, modules didn't load: see README. */
+.notice {
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  color: var(--muted);
+}
+
+/* Each card sizes its own buttons by its own width, not the viewport's. */
+bookmark-card {
+  display: block;
+  container-type: inline-size;
+}
+
+.card .actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+
+  & .btn { padding: 0.45rem 0.9rem; font-size: 0.9rem; }
+}
+
+/* A narrow card stacks its buttons full-width, whatever the screen size. */
+@container (max-width: 230px) {
+  .card .actions .btn { flex: 1 1 100%; justify-content: center; }
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-block: 1.5rem 1rem;
+
+  & h2 { margin: 0; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .card { transition: border-color 0.15s ease; }
+  .card:hover { border-color: var(--accent); }
+}

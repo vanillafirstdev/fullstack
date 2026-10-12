@@ -1,0 +1,18 @@
+# public/.htaccess — rules for the web root.
+
+Options -Indexes
+DirectoryIndex index.php
+
+# Anything that isn't a real file goes to the front controller.
+# "RewriteEngine On" here also stops the root .htaccess rules re-applying
+# to requests already inside public/.
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
+</IfModule>
+
+# Never serve hidden files or data/backup files dropped here by mistake.
+<FilesMatch "(^\.|\.(sqlite|sqlite3|db|sql|log|bak|ini|env|md|lock)$)">
+    Require all denied
+</FilesMatch>

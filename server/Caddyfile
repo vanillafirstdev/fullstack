@@ -1,0 +1,6 @@
+# server/Caddyfile — example. Caddy handles HTTPS certificates automatically.
+example.com {
+    root * /var/www/my-app/public
+    php_fastcgi unix//run/php/php8.3-fpm.sock
+    file_server
+}
